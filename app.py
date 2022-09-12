@@ -1,6 +1,7 @@
 from crypt import methods
 from urllib import response
 import pandas as pd
+from waitress import serve
 import os
 from kiranaengine import *
 from flask import Flask
@@ -34,5 +35,6 @@ def start_chat():
     
 
 if __name__ == "__main__":
-    app.run(port=8080)
+    # app.run(port=8080)
+    serve(app,host='0.0.0.0', port=80)
 

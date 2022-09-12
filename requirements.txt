@@ -3,3 +3,4 @@ nltk
 sastrawi
 pandas
 flask
+waitress
