@@ -18,7 +18,7 @@ class TfidfVectorGenerator:
             with open(self.model_file_path,"rb") as input_file:
                 self.vectorizer = pickle.load(input_file)
         else:
-            self.vectorizer = TfidfVectorizer(mex_feature=1000,binary=True)
+            self.vectorizer = TfidfVectorizer(max_feature=1000,binary=True)
             self.vectorizer.fit(cleaned_questions)
             with open(self.model_file_path,"wb") as output_file:
                 pickle.dump(self.vectorizer,output_file)
