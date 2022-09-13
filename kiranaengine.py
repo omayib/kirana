@@ -44,8 +44,6 @@ class KiranaEngine:
 
         X = self.vectorizer.vectorize(questions_cleaned)
 
-        print("data - "+self.data)
-
         if 'Class' not in list(self.data.columns):
             return
         
