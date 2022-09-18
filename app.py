@@ -6,7 +6,9 @@ import os
 from kiranaengine import *
 from flask import Flask
 from flask import jsonify, request
+from dotenv import load_dotenv
 
+load_dotenv()
 app = Flask(__name__)
 
 kiraengine = None
@@ -32,10 +34,19 @@ def start_chat():
         print(e)
         return jsonify({"response":"Maaf saya belum memahami😊. Ulangi dengan sederhana ya..🙏"})
 
-    
+def start_chat_in_console():
+    while True:
+        user_message = input("you : ")
+        if user_message=="q!":
+            break;
+        kirana_message = get_response(user_message)
+        print("Kirana : "+kirana_message)
 
 if __name__ == "__main__":
-    # app.run(port=8080)
-    serve(app,host='0.0.0.0', port=8080)
-    print("live!")
+    KIRANA_ENV=os.getenv('ENV')
+    if KIRANA_ENV== 'development':
+        start_chat_in_console()
+    else:
+        serve(app,host='0.0.0.0', port=8080)
+        print("live! production")
 

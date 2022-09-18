@@ -24,6 +24,7 @@ class KiranaEngine:
         self.le = LE()
         self.classifier = None
         self.build_model(type)
+        print("setup kirana engine [DONE]")
         
     
     def cleanup(self, sentence):
