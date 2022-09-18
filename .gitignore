@@ -2,3 +2,4 @@ models
 tmp
 venv
 __pycache__
+.env

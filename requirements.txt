@@ -4,3 +4,4 @@ sastrawi
 pandas
 flask
 waitress
+python-dotenv
