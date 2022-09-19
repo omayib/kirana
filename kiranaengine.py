@@ -63,7 +63,6 @@ class KiranaEngine:
         try:
             cleaned_user=self.cleanup(user_message)
             t_usr_array = self.vectorizer.query(cleaned_user)
-            print(t_usr_array)
             if self.classifier:
                 prediction = self.classifier.predict(t_usr_array)[0]
                 class_ = self.le.inverse_transform([prediction])[0]
