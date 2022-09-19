@@ -45,6 +45,7 @@ class KiranaEngine:
 
         X = self.vectorizer.vectorize(questions_cleaned)
 
+
         if 'Class' not in list(self.data.columns):
             return
         
@@ -62,6 +63,7 @@ class KiranaEngine:
         try:
             cleaned_user=self.cleanup(user_message)
             t_usr_array = self.vectorizer.query(cleaned_user)
+            print(t_usr_array)
             if self.classifier:
                 prediction = self.classifier.predict(t_usr_array)[0]
                 class_ = self.le.inverse_transform([prediction])[0]
@@ -76,9 +78,13 @@ class KiranaEngine:
                 sims = cosine_similarity(question_arr,t_usr_array)
                 cos_sims.append(sims)
             
-            if len(cos_sims)>0:
+            highest_similarity = max(cos_sims)
+
+            if len(cos_sims)>0 and highest_similarity>0.5:
                 ind = cos_sims.index(max(cos_sims))
-                return self.data['answer'][questionset.index[ind]]            
+                return self.data['answer'][questionset.index[ind]]   
+            else:
+                return "Maaf, saya belum memahami maksud pertanyaan Anda. Coba lagi dengan kalimat sederhana😊. Seputar akademik dan prodi Informatika ya, jangan hal pribadi.. Misalnya, setelah lulus saya bisa bekerja sebagai apa?"
         except Exception as e:
             print(e)
             return "Maaf, saya belum memahami maksud pertanyaan Anda. Coba lagi dengan kalimat sederhana😊"
